@@ -8,10 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPF_Kinectuino.Properties
-{
-
-
+namespace WPF_Kinectuino.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   Une classe de ressource fortement typée destinée, entre autres, à la consultation des chaînes localisées.
     /// </summary>
@@ -22,49 +22,68 @@ namespace WPF_Kinectuino.Properties
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources
-    {
-
+    internal class Resources {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources()
-        {
+        internal Resources() {
         }
-
+        
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if ((resourceMan == null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WPF_Kinectuino.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Remplace la propriété CurrentUICulture du thread actuel pour toutes
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;grammar version=&quot;1.0&quot; xml:lang=&quot;en-US&quot; root=&quot;rootRule&quot; tag-format=&quot;semantics/1.0-literals&quot; xmlns=&quot;http://www.w3.org/2001/06/grammar&quot;&gt;
+        ///  &lt;rule id=&quot;rootRule&quot;&gt;
+        ///    &lt;one-of&gt;
+        ///      &lt;item&gt;
+        ///        &lt;tag&gt;JARVIS&lt;/tag&gt;
+        ///        &lt;one-of&gt;
+        ///          &lt;item&gt; jarvis &lt;/item&gt;
+        ///          &lt;item&gt; garvis &lt;/item&gt;
+        ///        &lt;/one-of&gt;
+        ///      &lt;/item&gt;
+        ///      &lt;item&gt;
+        ///        &lt;tag&gt;TV-ON&lt;/tag&gt;
+        ///        &lt;one-of&gt;
+        ///          &lt;item&gt; tv on &lt;/item&gt;
+        ///          &lt;item&gt; teve on &lt;/item&gt;
+        ///        &lt;/one-of&gt;
+        ///      &lt;/item&gt;
+        ///      &lt;item&gt;
+        ///        [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string SpeechGrammar {
+            get {
+                return ResourceManager.GetString("SpeechGrammar", resourceCulture);
             }
         }
     }

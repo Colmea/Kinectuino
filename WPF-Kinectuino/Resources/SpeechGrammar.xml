@@ -1,0 +1,43 @@
+﻿<grammar version="1.0" xml:lang="en-US" root="rootRule" tag-format="semantics/1.0-literals" xmlns="http://www.w3.org/2001/06/grammar">
+  <rule id="rootRule">
+    <one-of>
+      <item>
+        <tag>JARVIS</tag>
+        <one-of>
+          <item> jarvis </item>
+          <item> garvis </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>TV-ON</tag>
+        <one-of>
+          <item> tv on </item>
+          <item> teve on </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>TV-UP</tag>
+        <one-of>
+          <item> tv up </item>
+          <item> teve up </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>TV-DOWN</tag>
+        <one-of>
+          <item> tv down </item>
+          <item> teve down </item>
+        </one-of>
+      </item>
+      <item>
+        <tag>TV-3</tag>
+        <one-of>
+          <item> T V three </item>
+          <item> T V 3 </item>
+          <item> Teve 3 </item>
+          <item> Teve three </item>
+        </one-of>
+      </item>
+    </one-of>
+  </rule>
+</grammar>
