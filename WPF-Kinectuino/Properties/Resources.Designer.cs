@@ -61,6 +61,24 @@ namespace WPF_Kinectuino.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à No kinect ready !.
+        /// </summary>
+        internal static string NoKinectReady {
+            get {
+                return ResourceManager.GetString("NoKinectReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à No speech recognizer !.
+        /// </summary>
+        internal static string NoSpeechRecognizer {
+            get {
+                return ResourceManager.GetString("NoSpeechRecognizer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à &lt;grammar version=&quot;1.0&quot; xml:lang=&quot;en-US&quot; root=&quot;rootRule&quot; tag-format=&quot;semantics/1.0-literals&quot; xmlns=&quot;http://www.w3.org/2001/06/grammar&quot;&gt;
         ///  &lt;rule id=&quot;rootRule&quot;&gt;
         ///    &lt;one-of&gt;
