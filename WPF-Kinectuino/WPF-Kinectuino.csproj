@@ -92,6 +92,19 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\CheckedHover.png" />
+    <Resource Include="Images\CheckedNormal.png" />
+    <Resource Include="Images\Kinect.ico" />
+    <Resource Include="Images\Logo.png" />
+    <Resource Include="Images\Status.png" />
+    <Resource Include="Images\UncheckedHover.png" />
+    <Resource Include="Images\UncheckedNormal.png" />
+    <Resource Include="Images\volant.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Ressources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
