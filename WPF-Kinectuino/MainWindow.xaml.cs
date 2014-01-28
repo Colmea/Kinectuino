@@ -22,7 +22,7 @@ namespace WPF_Kinectuino
         /// <summary>
         /// Serial Port to communicate with Arduino
         /// </summary>
-        private SerialPort serialPort = new SerialPort();
+        private SerialPort serialPort = new SerialPort("COM3");
 
         /// <summary>
         /// Serial port update frequency (in milliseconds)
@@ -401,15 +401,19 @@ namespace WPF_Kinectuino
             {
                 timeLastUpdateSerial = DateTime.Now.Ticks / 10000;
                 int profondeurMain = (int)((skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandLeft].Position.Z) * 1000);
-                int angleDirection =(int)( skeleton.Joints[JointType.HandLeft].Position.Y - skeleton.Joints[JointType.HandRight].Position.Y);
+                int angleDirection =(int)( (skeleton.Joints[JointType.HandLeft].Position.Y - skeleton.Joints[JointType.HandRight].Position.Y)*1000);
 
                 // on update les textes sur l'application
                 positionMain.Text = "Motor speed: " + profondeurMain;
                 directionMain.Text = "Angle: " + angleDirection;
 
                 // On envoit la donnée sur le Serial
-                this.serialPort.WriteLine("M" + profondeurMain);
-                this.serialPort.WriteLine("D" + positionMainGauche.X);
+
+                Console.WriteLine("M" + profondeurMain);
+                Console.WriteLine("D" + positionMainGauche.X);
+                Console.WriteLine("Angle direction : " + angleDirection);
+                //this.serialPort.WriteLine("M" + profondeurMain);
+                //this.serialPort.WriteLine("D" + positionMainGauche.X);
             }
             
             
