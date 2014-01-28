@@ -73,7 +73,7 @@ void loop()
       if (nodeData == "TVON")
       {
         // Samsung
-        irsend.sendSamsung(0xE0E040BF, 32);
+        //irsend.sendSamsung(0xE0E040BF, 32);
         
         // Sony
         irsend.sendSony(0xa90, 12);
@@ -91,7 +91,7 @@ void loop()
       else if (nodeData == "TVUP")
       {
         // Samsung
-        irsend.sendSamsung(0xE0E048B7, 32);
+        //irsend.sendSamsung(0xE0E048B7, 32);
         
         /* DEBUG
           Serial.print("tv up channel");
@@ -102,7 +102,7 @@ void loop()
       else if (nodeData == "TVDOWN")
       {
         // Samsung
-        irsend.sendSamsung(0xE0E008F7, 32);
+        //irsend.sendSamsung(0xE0E008F7, 32);
         
         /* DEBUG
           Serial.print("tv down channel");
@@ -113,7 +113,7 @@ void loop()
       else if (nodeData == "TV3")
       {
         // Samsung
-        irsend.sendSamsung(0xE0E0609F, 32);
+        //irsend.sendSamsung(0xE0E0609F, 32);
         
         Serial.print("tv channel 3");
       }
