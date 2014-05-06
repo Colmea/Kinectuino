@@ -404,11 +404,10 @@ namespace WPF_Kinectuino
                 int angleDirection =(int)( (skeleton.Joints[JointType.HandLeft].Position.Y - skeleton.Joints[JointType.HandRight].Position.Y)*1000);
 
                 // on update les textes sur l'application
-                positionMain.Text = "Motor speed: " + profondeurMain;
-                directionMain.Text = "Angle: " + angleDirection;
+                robotSpeed.Value = profondeurMain;
+                robotAngle.Value = angleDirection;
 
                 // On envoit la donnée sur le Serial
-
                 Console.WriteLine("M" + profondeurMain);
                 Console.WriteLine("D" + positionMainGauche.X);
                 Console.WriteLine("Angle direction : " + angleDirection);

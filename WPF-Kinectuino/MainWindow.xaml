@@ -48,26 +48,27 @@
 
     <Grid Name="layoutGrid" Margin="10 0 10 0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="47"/>
+            <RowDefinition Height="251*"/>
+            <RowDefinition Height="193*" />
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <DockPanel Grid.Row="0" Margin="0 0 0 20">
+        <DockPanel>
             <Image Grid.Column="1" Source="Images\Status.png" Stretch="None" HorizontalAlignment="Center" Margin="0 0 0 5"/>
         </DockPanel>
-        <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Center">
-            <Image Name="Image" Width="243" Height="50"/>
+        <Viewbox Grid.Row="2" Stretch="Uniform" HorizontalAlignment="Center" Width="758">
+            <Image Name="Image" Width="243" Height="61"/>
         </Viewbox>
-        <CheckBox Grid.Row="2" Style="{StaticResource SquareCheckBox}" Content="Sit mode" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 10 10 10" Name="checkBoxSeatedMode" Checked="CheckBoxSeatedModeChanged" Unchecked="CheckBoxSeatedModeChanged"/>
-        <StatusBar Grid.Row="3" HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White" Foreground="{StaticResource MediumGreyBrush}">
+        <CheckBox Grid.Row="3" Style="{StaticResource SquareCheckBox}" Content="Sit mode" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 10 10 10" Name="checkBoxSeatedMode" Checked="CheckBoxSeatedModeChanged" Unchecked="CheckBoxSeatedModeChanged"/>
+        <StatusBar Grid.Row="4" HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White" Foreground="{StaticResource MediumGreyBrush}">
             <StatusBarItem Padding="0 0 0 10">
                 <TextBlock Name="statusBarText" Margin="-1 0 0 0">Move the robot with your left hand: back and forth, from left to right.</TextBlock>
             </StatusBarItem>
         </StatusBar>
-        <TextBlock Height="25" Text="Motor speed: 0" Name="positionMain" Margin="438,0,-21,42" FontSize="12" />
-        <TextBlock Height="21" Name="directionMain" Text="Angle: 90°" Margin="439,17,40,29" />
-        <TextBlock Margin="65,0,409,33" VerticalAlignment="Bottom" Foreground="{StaticResource MediumGreyBrush}" FontFamily="Segoe UI" FontSize="18">Kinectuino</TextBlock>
+        <TextBlock Margin="65,0,409,13" VerticalAlignment="Bottom" Foreground="{StaticResource MediumGreyBrush}" FontFamily="Segoe UI" FontSize="18">Kinectuino</TextBlock>
+        <Slider Height="23" HorizontalAlignment="Center" Margin="276,199,273,0" Name="robotAngle" VerticalAlignment="Top" Width="209" IsEnabled="False" Minimum="-90" Maximum="90" Grid.Row="1" Value="0" HorizontalContentAlignment="Center" />
+        <ProgressBar Grid.Row="1" Height="187" HorizontalAlignment="Left" Margin="373,6,0,0" Name="robotSpeed" VerticalAlignment="Top" Width="17" Orientation="Vertical" Minimum="-100" />
     </Grid>
 </Window>
 
