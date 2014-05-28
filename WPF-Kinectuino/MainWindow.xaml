@@ -67,8 +67,40 @@
             </StatusBarItem>
         </StatusBar>
         <TextBlock Margin="65,0,409,13" VerticalAlignment="Bottom" Foreground="{StaticResource MediumGreyBrush}" FontFamily="Segoe UI" FontSize="18">Kinectuino</TextBlock>
-        <Slider Height="23" HorizontalAlignment="Center" Margin="276,199,273,0" Name="robotAngle" VerticalAlignment="Top" Width="209" IsEnabled="False" Minimum="-90" Maximum="90" Grid.Row="1" Value="0" HorizontalContentAlignment="Center" />
-        <ProgressBar Grid.Row="1" Height="187" HorizontalAlignment="Left" Margin="373,6,0,0" Name="robotSpeed" VerticalAlignment="Top" Width="17" Orientation="Vertical" Minimum="-100" />
+        <TabControl HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="752" Margin="10,0,0,0" Grid.Row="1" BorderBrush="LightGray" Background="White">
+            <TabControl.Effect>
+                <DropShadowEffect Opacity="0.1"/>
+            </TabControl.Effect>
+            <TabItem Header="Viewer" BorderBrush="White">
+                <Grid Background="#00000000"/>
+            </TabItem>
+            <TabItem Header="Options">
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer Height="194" Margin="10,10,10,0" VerticalAlignment="Top" Width="722" HorizontalAlignment="Center">
+                        <Grid RenderTransformOrigin="0.499,0.299">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="65*"/>
+                                <RowDefinition Height="129*"/>
+                            </Grid.RowDefinitions>
+                            <Expander Header="Joints activation" HorizontalAlignment="Left" VerticalAlignment="Top" Height="108" Width="695" Grid.RowSpan="2">
+                                <Grid Background="#00E5E5E5">
+                                    <Expander Header="Body" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="652" Margin="10,10,0,-30" BorderBrush="#FFE4E0E0">
+                                        <Grid Background="#33E5E5E5" Height="103" Margin="2,0,-2,0">
+                                            <CheckBox Content="Head joint" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
+                                            <CheckBox Content="Neck joint" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,31,0,0"/>
+                                            <CheckBox Content="Spin joint" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,52,0,0"/>
+                                        </Grid>
+                                    </Expander>
+                                </Grid>
+                            </Expander>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
 
