@@ -645,5 +645,10 @@ namespace WPF_Kinectuino
         {
 
         }
+
+        private void CheckBox_Checked_2(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

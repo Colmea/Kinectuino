@@ -67,7 +67,7 @@
             </StatusBarItem>
         </StatusBar>
         <TextBlock Margin="65,0,409,13" VerticalAlignment="Bottom" Foreground="{StaticResource MediumGreyBrush}" FontFamily="Segoe UI" FontSize="18">Kinectuino</TextBlock>
-        <TabControl HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="752" Margin="10,0,0,0" Grid.Row="1" BorderBrush="LightGray" Background="White">
+        <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Width="752" Margin="10,0,0,0" Grid.Row="1" BorderBrush="LightGray" Background="White" Height="232">
             <TabControl.Effect>
                 <DropShadowEffect Opacity="0.1"/>
             </TabControl.Effect>
@@ -75,23 +75,83 @@
                 <Grid Background="#00000000"/>
             </TabItem>
             <TabItem Header="Options">
-                <Grid Background="White">
+                <Grid Background="White" Margin="10,-12,-11,-2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Height="194" Margin="10,10,10,0" VerticalAlignment="Top" Width="722" HorizontalAlignment="Center">
+                    <ScrollViewer Margin="10,10,11,0" VerticalAlignment="Top" Width="722" HorizontalAlignment="Center" Height="194">
                         <Grid RenderTransformOrigin="0.499,0.299">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="65*"/>
                                 <RowDefinition Height="129*"/>
                             </Grid.RowDefinitions>
-                            <Expander Header="Joints activation" HorizontalAlignment="Left" VerticalAlignment="Top" Height="108" Width="695" Grid.RowSpan="2">
+                            <Expander Header="Joints activation" HorizontalAlignment="Left" VerticalAlignment="Top" Width="695" Grid.RowSpan="2" IsExpanded="True">
                                 <Grid Background="#00E5E5E5">
-                                    <Expander Header="Body" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="652" Margin="10,10,0,-30" BorderBrush="#FFE4E0E0">
-                                        <Grid Background="#33E5E5E5" Height="103" Margin="2,0,-2,0">
-                                            <CheckBox Content="Head joint" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-                                            <CheckBox Content="Neck joint" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,31,0,0"/>
-                                            <CheckBox Content="Spin joint" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,52,0,0"/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="16*"/>
+                                        <RowDefinition Height="19*"/>
+                                        <RowDefinition Height="40*"/>
+                                        <RowDefinition Height="18*"/>
+                                    </Grid.RowDefinitions>
+                                    <Expander Header="Head" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0" Width="673">
+                                        <Grid Background="#1EE5E5E5" Margin="0,5">
+                                            <CheckBox Content="Head" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#1EF4F4F4" Margin="10,0,0,0"/>
+                                        </Grid>
+                                    </Expander>
+                                    <Expander Header="Body" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Width="317" Margin="10,5,0,0">
+                                        <Grid Background="#1EE5E5E5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="31*"/>
+                                                <RowDefinition Height="30*"/>
+                                                <RowDefinition Height="45*"/>
+                                            </Grid.RowDefinitions>
+                                            <CheckBox Content="Shoulder Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Checked="CheckBox_Checked_2" Padding="5,0,0,0"/>
+                                            <CheckBox Content="Spine" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="16" Width="68" Grid.Row="1" Checked="CheckBox_Checked_2"/>
+                                            <CheckBox Content="Hip Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Grid.Row="2"/>
+                                        </Grid>
+                                    </Expander>
+                                    <Expander Header="Arms" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="2" VerticalAlignment="Top">
+                                        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="304" Margin="0,0,-252,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="151*"/>
+                                                <ColumnDefinition Width="153*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="25*"/>
+                                                <RowDefinition Height="22*"/>
+                                                <RowDefinition Height="19*"/>
+                                                <RowDefinition Height="16*"/>
+                                            </Grid.RowDefinitions>
+                                            <CheckBox Content="Shoulder Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                                            <CheckBox Content="Shoulder Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                            <CheckBox Content="Elbow Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+                                            <CheckBox Content="Elbow Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+                                            <CheckBox Content="Wrist Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+                                            <CheckBox Content="Wrist Right" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Margin="10,10,0,0"/>
+                                            <CheckBox Content="Hand Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+                                            <CheckBox Content="Hand Right" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="1"/>
+                                        </Grid>
+                                    </Expander>
+                                    <Expander Header="Legs" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="4" VerticalAlignment="Top">
+                                        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="304" Margin="0,0,-252,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="9*"/>
+                                                <ColumnDefinition Width="10*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition Height="0*"/>
+                                                <RowDefinition Height="2*"/>
+                                            </Grid.RowDefinitions>
+                                            <CheckBox Content="Hip Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="16" Width="59"/>
+                                            <CheckBox Content="Hip Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="16" Width="67"/>
+                                            <CheckBox Content="Knee Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Height="16" Width="66"/>
+                                            <CheckBox Content="Knee Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Height="16" Width="75"/>
+                                            <CheckBox Content="Ankle Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="16" Width="70"/>
+                                            <CheckBox Content="Ankle Right" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Margin="10,10,0,0" Height="16" Width="78"/>
+                                            <CheckBox Content="Foot Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="16" Width="69"/>
+                                            <CheckBox Content="Foot Right" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="1" Height="16" Width="77"/>
                                         </Grid>
                                     </Expander>
                                 </Grid>
