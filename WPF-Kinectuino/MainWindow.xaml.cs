@@ -138,6 +138,7 @@ namespace WPF_Kinectuino
 
             // Speech synth Initialization
             InitializeSynth();
+
         }
 
 
@@ -149,25 +150,18 @@ namespace WPF_Kinectuino
         /// </returns>
         protected Boolean InitializeSynth()
         {
-            try
-            {
-                jarvisResponses.Add("Yes sir");
-                jarvisResponses.Add("Alright");
-                jarvisResponses.Add("Done sir");
+            
+                this.jarvisResponses.Add("Yes sir");
+                this.jarvisResponses.Add("Alright");
+                this.jarvisResponses.Add("Done sir");
 
-                synth = new SpeechSynthesizer();
-                synth.SetOutputToDefaultAudioDevice();
-                synth.SelectVoiceByHints(VoiceGender.Male, VoiceAge.Child);
+                this.synth = new SpeechSynthesizer();
+                
+                
 
-                synth.Speak("Kinectuino initializing");
-                synth.Speak("Say .  JARVIS to enable voice command");
 
                 return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            
 
         }
 
@@ -403,9 +397,7 @@ namespace WPF_Kinectuino
                 int profondeurMain = (int)((skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandLeft].Position.Z) * 1000);
                 int angleDirection =(int)( (skeleton.Joints[JointType.HandLeft].Position.Y - skeleton.Joints[JointType.HandRight].Position.Y)*1000);
 
-                // on update les textes sur l'application
-                robotSpeed.Value = profondeurMain;
-                robotAngle.Value = angleDirection;
+               
 
                 // On envoit la donnée sur le Serial
                 Console.WriteLine("M" + profondeurMain);
@@ -629,8 +621,8 @@ namespace WPF_Kinectuino
         /// <param name="e">event arguments.</param>
         private void SpeechRejected(object sender, SpeechRecognitionRejectedEventArgs e)
         {
-            synth.Speak("sorry");
-            jarvisEnabled = false;
+            this.synth.Speak("sorry");
+            this.jarvisEnabled = false;
             // actions si speech non reconnu
         }
 
@@ -642,6 +634,16 @@ namespace WPF_Kinectuino
         {
             int randomIndex = random.Next(jarvisResponses.Count);
             return (string)jarvisResponses[randomIndex];
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CheckBox_Checked_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
