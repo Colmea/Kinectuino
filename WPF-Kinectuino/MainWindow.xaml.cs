@@ -87,6 +87,11 @@ namespace WPF_Kinectuino
         private const double JointThickness = 3;
 
         /// <summary>
+        /// Thickness of drawn joint lines
+        /// </summary>
+        private const double EnabledJointThickness = 7;
+
+        /// <summary>
         /// Thickness of body center ellipse
         /// </summary>
         private const double BodyCenterThickness = 10;
@@ -107,9 +112,19 @@ namespace WPF_Kinectuino
         private readonly Brush trackedJointBrush = new SolidColorBrush(Color.FromArgb(255, 68, 192, 68));
 
         /// <summary>
+        /// Brush used for drawing joints that are currently tracked and enabled in Kinectuino
+        /// </summary>
+        private readonly Brush enabledTrackedJointBrush = Brushes.Red;
+
+        /// <summary>
         /// Brush used for drawing joints that are currently inferred
         /// </summary>        
         private readonly Brush inferredJointBrush = Brushes.Yellow;
+
+        /// <summary>
+        /// Brush used for drawing joints that are currently inferred but enabled in Kinectuino
+        /// </summary>        
+        private readonly Brush enabledInferredJointBrush = Brushes.Purple;
 
         /// <summary>
         /// Pen used for drawing bones that are currently tracked
@@ -450,19 +465,38 @@ namespace WPF_Kinectuino
             foreach (Joint joint in skeleton.Joints)
             {
                 Brush drawBrush = null;
+                double brushThickness = JointThickness;
 
                 if (joint.TrackingState == JointTrackingState.Tracked)
                 {
-                    drawBrush = this.trackedJointBrush;                    
+                    if (this.Kinectuino.isJointEnabled(joint.JointType))
+                    {
+                        drawBrush = enabledTrackedJointBrush;
+                        brushThickness = EnabledJointThickness;
+                    }
+                    else
+                    {
+                        drawBrush = trackedJointBrush;
+                        brushThickness = JointThickness;
+                    }
                 }
                 else if (joint.TrackingState == JointTrackingState.Inferred)
                 {
-                    drawBrush = this.inferredJointBrush;                    
+                    if (this.Kinectuino.isJointEnabled(joint.JointType))
+                    {
+                        drawBrush = enabledInferredJointBrush;
+                        brushThickness = EnabledJointThickness;
+                    }
+                    else
+                    {
+                        drawBrush = inferredJointBrush;
+                        brushThickness = JointThickness;
+                    }
                 }
 
                 if (drawBrush != null)
                 {
-                    drawingContext.DrawEllipse(drawBrush, null, this.SkeletonPointToScreen(joint.Position), JointThickness, JointThickness);
+                    drawingContext.DrawEllipse(drawBrush, null, this.SkeletonPointToScreen(joint.Position), brushThickness, brushThickness);
                 }
             }
         }
