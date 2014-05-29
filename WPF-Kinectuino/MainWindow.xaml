@@ -60,13 +60,13 @@
         <Viewbox Grid.Row="2" Stretch="Uniform" HorizontalAlignment="Center" Width="758">
             <Image Name="Image" Width="243" Height="61"/>
         </Viewbox>
-        <CheckBox Grid.Row="3" Style="{StaticResource SquareCheckBox}" Content="Sit mode" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 10 10 10" Name="checkBoxSeatedMode" Checked="CheckBoxSeatedModeChanged" Unchecked="CheckBoxSeatedModeChanged"/>
+        <CheckBox Grid.Row="3" Style="{StaticResource SquareCheckBox}" Content="Sit mode" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 10 10 10" Name="checkBoxSeatedMode" Checked="CheckBoxSeatedModeChanged" Unchecked="CheckBoxSeatedModeChanged" ToolTip="Sit mode allows skeleton detection when you're sitting "/>
         <StatusBar Grid.Row="4" HorizontalAlignment="Stretch" Name="statusBar" VerticalAlignment="Bottom" Background="White" Foreground="{StaticResource MediumGreyBrush}">
             <StatusBarItem Padding="0 0 0 10">
-                <TextBlock Name="statusBarText" Margin="-1 0 0 0">Move the robot with your left hand: back and forth, from left to right.</TextBlock>
+                <TextBlock x:Name="statusBarText" Margin="-1 0 0 0"><Run Language="fr-be" Text="Kinectuino - Connect your Kinect to your Arduino project"/></TextBlock>
             </StatusBarItem>
         </StatusBar>
-        <TextBlock Margin="65,0,409,13" VerticalAlignment="Bottom" Foreground="{StaticResource MediumGreyBrush}" FontFamily="Segoe UI" FontSize="18">Kinectuino</TextBlock>
+        <TextBlock Margin="36,0,438,13" VerticalAlignment="Bottom" Foreground="{StaticResource MediumGreyBrush}" FontFamily="Segoe UI" FontSize="18">Kinectuino</TextBlock>
         <TabControl HorizontalAlignment="Left" VerticalAlignment="Top" Width="752" Margin="10,0,0,0" Grid.Row="1" BorderBrush="LightGray" Background="White" Height="232">
             <TabControl.Effect>
                 <DropShadowEffect Opacity="0.1"/>
