@@ -11,6 +11,7 @@ using Microsoft.Speech.Recognition;
 using Microsoft.Kinect;
 using System.Speech.Synthesis;
 
+
 namespace WPF_Kinectuino
 {
 
@@ -19,6 +20,12 @@ namespace WPF_Kinectuino
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        /// <summary>
+        /// Kinectuino class to manage kinect datas and USB port
+        /// </summary>
+        private WPF_Kinectuino.Resources.Kinectuino Kinectuino = new  WPF_Kinectuino.Resources.Kinectuino();
+
         /// <summary>
         /// Serial Port to communicate with Arduino
         /// </summary>
@@ -649,6 +656,221 @@ namespace WPF_Kinectuino
         private void CheckBox_Checked_2(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Kinectuino_UpdateFrequency_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            this.Kinectuino.setUpdateFrequency(int.Parse(Kinectuino_UpdateFrequency.Text));
+        }
+
+        private void Kinectuino_Port_SelectionChanged(object sender, EventArgs e)
+        {
+            this.Kinectuino.setSerialPort((string)Kinectuino_Port.Text);
+        }
+
+        private void Kinectuino_Joint_Head_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.Head, true);
+        }
+
+        private void Kinectuino_Joint_Head_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.Head, false);
+        }
+
+        private void Kinectuino_Joint_ShoulderCenter_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ShoulderCenter, true);
+        }
+
+        private void Kinectuino_Joint_ShoulderCenter_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ShoulderCenter, false);
+        }
+
+        private void Kinectuino_Joint_Spine_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.Spine, true);
+        }
+
+        private void Kinectuino_Joint_Spine_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.Spine, false);
+        }
+
+        private void Kinectuino_Joint_HipCenter_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HipCenter, true);
+        }
+
+        private void Kinectuino_Joint_HipCenter_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HipCenter, false);
+        }
+
+
+
+
+        private void Kinectuino_Joint_ShoulderLeft_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ShoulderLeft, true);
+        }
+
+        private void Kinectuino_Joint_ShoulderLeft_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ShoulderLeft, false);
+        }
+
+        private void Kinectuino_Joint_ShoulderRight_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ShoulderRight, true);
+        }
+
+        private void Kinectuino_Joint_ShoulderRight_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ShoulderRight, false);
+        }
+
+        private void Kinectuino_Joint_ElbowLeft_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ElbowLeft, false);
+        }
+
+        private void Kinectuino_Joint_ElbowLeft_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ElbowLeft, true);
+        }
+
+        private void Kinectuino_Joint_ElbowRight_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ElbowRight, true);
+        }
+
+        private void Kinectuino_Joint_ElbowRight_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.ElbowRight, false);
+        }
+
+        private void Kinectuino_Joint_WristLeft_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.WristLeft, false);
+        }
+
+        private void Kinectuino_Joint_WristLeft_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.WristLeft, true);
+        }
+
+        private void Kinectuino_Joint_WristRight_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.WristRight, true);
+        }
+
+        private void Kinectuino_Joint_WristRight_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.WristRight, false);
+        }
+
+        private void Kinectuino_Joint_HandLeft_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HandLeft, false);
+        }
+
+        private void Kinectuino_Joint_HandLeft_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HandLeft, true);
+        }
+
+        private void Kinectuino_Joint_HandRight_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HandRight, true);
+        }
+
+        private void Kinectuino_Joint_HandRight_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HandRight, false);
+        }
+
+
+
+        private void Kinectuino_Joint_FootRight_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.FootRight, false);
+        }
+
+        private void Kinectuino_Joint_FootRight_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.FootRight, true);
+        }
+
+        private void Kinectuino_Joint_HipLeft_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HipLeft, true);
+        }
+
+        private void Kinectuino_Joint_HipLeft_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HipLeft, false);
+        }
+
+        private void Kinectuino_Joint_HipRight_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HipRight, false);
+        }
+
+        private void Kinectuino_Joint_HipRight_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.HipRight, true);
+        }
+
+        private void Kinectuino_Joint_KneeLeft_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.KneeLeft, true);
+        }
+
+        private void Kinectuino_Joint_KneeLeft_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.KneeLeft, false);
+        }
+
+        private void Kinectuino_Joint_KneeRight_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.KneeRight, true);
+        }
+
+        private void Kinectuino_Joint_KneeRight_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.KneeRight, false);
+        }
+
+        private void Kinectuino_Joint_AnkleLeft_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.AnkleLeft, false);
+        }
+
+        private void Kinectuino_Joint_AnkleLeft_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.AnkleLeft, true);
+        }
+
+        private void Kinectuino_Joint_AnkleRight_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.AnkleRight, true);
+        }
+
+        private void Kinectuino_Joint_AnkleRight_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.AnkleRight, false);
+        }
+
+        private void Kinectuino_Joint_FootLeft_Checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.FootLeft, true);
+        }
+
+        private void Kinectuino_Joint_FootLeft_Checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.Kinectuino.setJointEnabled(JointType.FootLeft, false);
         }
     }
 }

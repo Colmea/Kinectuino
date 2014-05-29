@@ -92,8 +92,8 @@
                                     <ColumnDefinition Width="568*" />
                                 </Grid.ColumnDefinitions>
                                 <Border BorderThickness="0,0,0,1" BorderBrush="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Grid.ColumnSpan="2" Padding="0" Margin="0,0,0,-3"/>
-                                <Label Content="USB Port" HorizontalAlignment="Right" Margin="0,10" VerticalAlignment="Top"/>
-                                <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="3" Height="22" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" OpacityMask="{DynamicResource KinectBlueBrush}">
+                                <Label Content="USB Port" HorizontalAlignment="Right" Margin="0,10" VerticalAlignment="Top" Padding="5,5,20,5"/>
+                                <ComboBox x:Name="Kinectuino_Port" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="3" Height="22" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" OpacityMask="{DynamicResource KinectBlueBrush}" DropDownClosed="Kinectuino_Port_SelectionChanged">
                                     <ComboBoxItem Content="COM0"/>
                                     <ComboBoxItem Content="COM1"/>
                                     <ComboBoxItem Content="COM2"/>
@@ -109,9 +109,9 @@
                                 </Grid.ColumnDefinitions>
                                 <Border BorderThickness="0,0,0,1" BorderBrush="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Grid.ColumnSpan="3" Padding="0" Margin="0" />
 
-                                <Label Content="Update frequency" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top"/>
-                                <Slider x:Name="slider" Grid.Column="1" Margin="10,10,13,13" AutoToolTipPlacement="BottomRight" Maximum="500" Minimum="10" TickFrequency="10" Value="{Binding Text, ElementName=textBox}" SmallChange="1" LargeChange="8" ToolTip="Frequency time (in milliseconds) when Kinectuino will send data throught USB port " IsSnapToTickEnabled="True"/>
-                                <TextBox x:Name="textBox" Grid.Column="2" Margin="0,12,387,12" Text="100"/>
+                                <Label Content="Update frequency" HorizontalAlignment="Right" Margin="0,10,0,0" VerticalAlignment="Top" Padding="5,5,20,5"/>
+                                <Slider x:Name="Kinectuino_UpdateFrequency_Slider" Grid.Column="1" Margin="10,10,13,13" AutoToolTipPlacement="BottomRight" Maximum="500" Minimum="10" TickFrequency="10" Value="{Binding Text, ElementName=Kinectuino_UpdateFrequency}" SmallChange="1" LargeChange="8" ToolTip="Frequency time (in milliseconds) when Kinectuino will send data throught USB port " IsSnapToTickEnabled="True"/>
+                                <TextBox x:Name="Kinectuino_UpdateFrequency" Grid.Column="2" Margin="0,12,387,12" Text="100" TextChanged="Kinectuino_UpdateFrequency_TextChanged"/>
                                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="2" Margin="45,15,0,0"><Run Language="fr-be" Text="ms"/></TextBlock>
                             </Grid>
                             <Expander Header="Joints activation" HorizontalAlignment="Left" VerticalAlignment="Top" Width="695" Grid.Row="2" Grid.RowSpan="2" IsExpanded="True" RenderTransformOrigin="0.498,0.911" Margin="0,10,0,0">
@@ -124,7 +124,11 @@
                                     </Grid.RowDefinitions>
                                     <Expander Header="Head" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,5,0,0" Width="673">
                                         <Grid Background="#1EE5E5E5" Margin="0,5">
-                                            <CheckBox Content="Head" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#1EF4F4F4" Margin="10,0,0,0"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="207*"/>
+                                                <ColumnDefinition Width="464*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <CheckBox x:Name="Kinectuino_Joint_Head_Checkbox" Content="Head" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#1EF4F4F4" Margin="10,0,0,0" Checked="Kinectuino_Joint_Head_Checkbox_Checked" Unchecked="Kinectuino_Joint_Head_Checkbox_Unchecked"/>
                                         </Grid>
                                     </Expander>
                                     <Expander Header="Body" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Width="673" Margin="10,5,0,0">
@@ -134,9 +138,9 @@
                                                 <RowDefinition Height="30*"/>
                                                 <RowDefinition Height="45*"/>
                                             </Grid.RowDefinitions>
-                                            <CheckBox Content="Shoulder Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Checked="CheckBox_Checked_2" Padding="5,0,0,0"/>
-                                            <CheckBox Content="Spine" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="16" Width="68" Grid.Row="1" Checked="CheckBox_Checked_2"/>
-                                            <CheckBox Content="Hip Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Grid.Row="2"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_ShoulderCenter_Checkbox" Content="Shoulder Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Padding="5,0,0,0" Checked="Kinectuino_Joint_ShoulderCenter_Checkbox_Checked" Unchecked="Kinectuino_Joint_ShoulderCenter_Checkbox_Unchecked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_Spine_Checkbox" Content="Spine" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Height="16" Width="68" Grid.Row="1" Unchecked="Kinectuino_Joint_Spine_Checkbox_Unchecked" Checked="Kinectuino_Joint_Spine_Checkbox_Checked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_HipCenter_Checkbox" Content="Hip Center" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Grid.Row="2" Checked="Kinectuino_Joint_HipCenter_Checkbox_Checked" Unchecked="Kinectuino_Joint_HipCenter_Checkbox_Unchecked"/>
                                         </Grid>
                                     </Expander>
                                     <Expander Header="Arms" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="673">
@@ -151,14 +155,14 @@
                                                 <RowDefinition Height="19*"/>
                                                 <RowDefinition Height="16*"/>
                                             </Grid.RowDefinitions>
-                                            <CheckBox Content="Shoulder Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                                            <CheckBox Content="Shoulder Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                                            <CheckBox Content="Elbow Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-                                            <CheckBox Content="Elbow Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
-                                            <CheckBox Content="Wrist Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top"/>
-                                            <CheckBox Content="Wrist Right" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Margin="10,10,0,0"/>
-                                            <CheckBox Content="Hand Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top"/>
-                                            <CheckBox Content="Hand Right" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="1"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_ShoulderLeft_Checkbox" Content="Shoulder Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Checked="Kinectuino_Joint_ShoulderLeft_Checkbox_Checked" Unchecked="Kinectuino_Joint_ShoulderLeft_Checkbox_Unchecked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_ShoulderRight_Checkbox" Content="Shoulder Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Checked="Kinectuino_Joint_ShoulderRight_Checkbox_Checked" Unchecked="Kinectuino_Joint_ShoulderRight_Checkbox_Unchecked" />
+                                            <CheckBox x:Name="Kinectuino_Joint_ElbowLeft_Checkbox" Content="Elbow Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Unchecked="Kinectuino_Joint_ElbowLeft_Checkbox_Unchecked" Checked="Kinectuino_Joint_ElbowLeft_Checkbox_Checked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_ElbowRight_Checkbox" Content="Elbow Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Checked="Kinectuino_Joint_ElbowRight_Checkbox_Checked" Unchecked="Kinectuino_Joint_ElbowRight_Checkbox_Unchecked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_WristLeft_Checkbox" Content="Wrist Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Unchecked="Kinectuino_Joint_WristLeft_Checkbox_Unchecked" Checked="Kinectuino_Joint_WristLeft_Checkbox_Checked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_WristRight_Checkbox" Content="Wrist Right" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Margin="10,10,0,0" Checked="Kinectuino_Joint_WristRight_Checkbox_Checked" Unchecked="Kinectuino_Joint_WristRight_Checkbox_Unchecked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_HandLeft_Checkbox" Content="Hand Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Unchecked="Kinectuino_Joint_HandLeft_Checkbox_Unchecked" Checked="Kinectuino_Joint_HandLeft_Checkbox_Checked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_HandRight_Checkbox" Content="Hand Right" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="1" Checked="Kinectuino_Joint_HandRight_Checkbox_Checked" Unchecked="Kinectuino_Joint_HandRight_Checkbox_Unchecked"/>
                                         </Grid>
                                     </Expander>
                                     <Expander Header="Legs" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="673">
@@ -173,14 +177,14 @@
                                                 <RowDefinition Height="0*"/>
                                                 <RowDefinition Height="2*"/>
                                             </Grid.RowDefinitions>
-                                            <CheckBox Content="Hip Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="16" Width="59"/>
-                                            <CheckBox Content="Hip Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="16" Width="67"/>
-                                            <CheckBox Content="Knee Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Height="16" Width="66"/>
-                                            <CheckBox Content="Knee Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Height="16" Width="75"/>
-                                            <CheckBox Content="Ankle Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="16" Width="70"/>
-                                            <CheckBox Content="Ankle Right" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Margin="10,10,0,0" Height="16" Width="78"/>
-                                            <CheckBox Content="Foot Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="16" Width="69"/>
-                                            <CheckBox Content="Foot Right" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="1" Height="16" Width="77"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_HipLeft_Checkbox" Content="Hip Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="16" Width="59" Checked="Kinectuino_Joint_HipLeft_Checkbox_Checked" Unchecked="Kinectuino_Joint_HipLeft_Checkbox_Unchecked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_HipRight_Checkbox" Content="Hip Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Height="16" Width="67" Unchecked="Kinectuino_Joint_HipRight_Checkbox_Unchecked" Checked="Kinectuino_Joint_HipRight_Checkbox_Checked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_KneeLeft_Checkbox" Content="Knee Left" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Height="16" Width="66" Checked="Kinectuino_Joint_KneeLeft_Checkbox_Checked" Unchecked="Kinectuino_Joint_KneeLeft_Checkbox_Unchecked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_KneeRight_Checkbox" Content="Knee Right" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Height="16" Width="75" Unchecked="Kinectuino_Joint_KneeRight_Checkbox_Unchecked" Checked="Kinectuino_Joint_KneeRight_Checkbox_Checked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_AnkleLeft_Checkbox" Content="Ankle Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Height="16" Width="70" Unchecked="Kinectuino_Joint_AnkleLeft_Checkbox_Unchecked" Checked="Kinectuino_Joint_AnkleLeft_Checkbox_Checked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_AnkleRight_Checkbox" Content="Ankle Right" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Margin="10,10,0,0" Height="16" Width="78" Checked="Kinectuino_Joint_AnkleRight_Checkbox_Checked" Unchecked="Kinectuino_Joint_AnkleRight_Checkbox_Unchecked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_FootLeft_Checkbox" Content="Foot Left" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Height="16" Width="69" Checked="Kinectuino_Joint_FootLeft_Checkbox_Checked" Unchecked="Kinectuino_Joint_FootLeft_Checkbox_Unchecked"/>
+                                            <CheckBox x:Name="Kinectuino_Joint_FootRight_Checkbox" Content="Foot Right" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="1" Height="16" Width="77" Unchecked="Kinectuino_Joint_FootRight_Checkbox_Unchecked" Checked="Kinectuino_Joint_FootRight_Checkbox_Checked"/>
                                         </Grid>
                                     </Expander>
                                 </Grid>
