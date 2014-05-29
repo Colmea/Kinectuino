@@ -6,11 +6,17 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using Microsoft.Kinect;
+using System.Windows;
 
 namespace WPF_Kinectuino.Resources
 {
     class Kinectuino
     {
+        /// <summary>
+        /// Active Kinect sensor
+        /// </summary>
+        private KinectSensor sensor;
+
         /// <summary>
         /// Serial Port to communicate with Arduino
         /// </summary>
@@ -39,8 +45,42 @@ namespace WPF_Kinectuino.Resources
             Debug.WriteLine("Kinectuino initialize...");
 
             this.setUpdateFrequency(100);
-
             this.initDefaultJointsActivation();
+        }
+
+        public void setSensor(KinectSensor sensor)
+        {
+            this.sensor = sensor;
+
+            // Add an event handler to be called whenever there is new color frame data
+            this.sensor.SkeletonFrameReady += SensorSkeletonFrameReadyEvent;
+        }
+
+        /// <summary>
+        /// Update Skeleton and joints position. Send data throught serial port if needed
+        /// </summary>
+        /// <param name="skeleton">The tracked skeleton</param>
+        public void updateSkeleton(Skeleton skeleton)
+        {
+            long timeStampNow = DateTime.Now.Ticks/10000;
+
+            // Only send data if updateFrequency is reached
+            if ((timeStampNow - this.timeLastUpdateSerial) > this.updateFrequency)
+            {
+                
+                // Head
+                if (this.isJointEnabled(JointType.Head))
+                    this.sendJointToSerial(skeleton.Joints[JointType.Head]);
+
+                this.timeLastUpdateSerial = DateTime.Now.Ticks / 10000;
+            }
+        }
+
+        private void sendJointToSerial(Joint joint)
+        {
+            Point position = this.SkeletonPointToScreen(joint.Position);
+
+            Debug.WriteLine("SERIAL: " + joint.JointType + " is at " + position.X + ", " + position.Y);
         }
 
         public void setUpdateFrequency(int updateFrequency)
@@ -105,6 +145,55 @@ namespace WPF_Kinectuino.Resources
         {
             this.jointsActivation[jointType] = flag;
             Debug.WriteLine(jointType + " new val: " + this.jointsActivation[jointType]);
+        }
+
+        /// <summary>
+        /// Event handler for Kinect sensor's SkeletonFrameReady event
+        /// </summary>
+        /// <param name="sender">object sending the event</param>
+        /// <param name="e">event arguments</param>
+        private void SensorSkeletonFrameReadyEvent(object sender, SkeletonFrameReadyEventArgs e)
+        {
+            Skeleton[] skeletons = new Skeleton[0];
+
+            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
+            {
+                if (skeletonFrame != null)
+                {
+                    skeletons = new Skeleton[skeletonFrame.SkeletonArrayLength];
+                    skeletonFrame.CopySkeletonDataTo(skeletons);
+                }
+            }
+
+
+            if (skeletons.Length != 0)
+            {
+                bool firstTrackedSkeletonFound = false;
+
+                // Only send data to Kinectuino from first tracked skeleton
+                // @TODO Handle more than one tracked skeleton
+                foreach (Skeleton skel in skeletons)
+                {
+                    if (SkeletonTrackingState.Tracked == skel.TrackingState && !firstTrackedSkeletonFound)
+                    {
+                        this.updateSkeleton(skel);
+                        return;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Maps a SkeletonPoint to lie within our render space and converts to Point
+        /// </summary>
+        /// <param name="skelpoint">point to map</param>
+        /// <returns>mapped point</returns>
+        private Point SkeletonPointToScreen(SkeletonPoint skelpoint)
+        {
+            // Convert point to depth space.  
+            // We are not using depth directly, but we do want the points in our 640x480 output resolution.
+            DepthImagePoint depthPoint = this.sensor.CoordinateMapper.MapSkeletonPointToDepthPoint(skelpoint, DepthImageFormat.Resolution640x480Fps30);
+            return new Point(depthPoint.X, depthPoint.Y);
         }
     }
 }

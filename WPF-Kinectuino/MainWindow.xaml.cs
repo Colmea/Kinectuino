@@ -24,7 +24,7 @@ namespace WPF_Kinectuino
         /// <summary>
         /// Kinectuino class to manage kinect datas and USB port
         /// </summary>
-        private WPF_Kinectuino.Resources.Kinectuino Kinectuino = new  WPF_Kinectuino.Resources.Kinectuino();
+        private WPF_Kinectuino.Resources.Kinectuino Kinectuino = new WPF_Kinectuino.Resources.Kinectuino();
 
         /// <summary>
         /// Serial Port to communicate with Arduino
@@ -286,6 +286,9 @@ namespace WPF_Kinectuino
                 // Add an event handler to be called whenever there is new color frame data
                 this.sensor.SkeletonFrameReady += this.SensorSkeletonFrameReady;
 
+                // Set sensor to Kinectuino
+                this.Kinectuino.setSensor(this.sensor);
+
                 // Start the sensor!
                 try
                 {
@@ -374,6 +377,7 @@ namespace WPF_Kinectuino
 
                 if (skeletons.Length != 0)
                 {
+                    // Draw and stuff for all skeletons
                     foreach (Skeleton skel in skeletons)
                     {
                         RenderClippedEdges(skel, dc);
@@ -409,28 +413,6 @@ namespace WPF_Kinectuino
             // Récupère position main gauche pour envoyer à l'Arduino par le Serial port
             Point positionMainGauche = this.SkeletonPointToScreen(skeleton.Joints[JointType.HandLeft].Position);
 
-            
-            long timeStampNow = DateTime.Now.Ticks/10000;
-
-            // Si lastUpdate > frequenceUpdate, on envoit les données sur le port série
-            if ((timeStampNow - timeLastUpdateSerial) > frequenceUpdate)
-            {
-                timeLastUpdateSerial = DateTime.Now.Ticks / 10000;
-                int profondeurMain = (int)((skeleton.Joints[JointType.ShoulderCenter].Position.Z - skeleton.Joints[JointType.HandLeft].Position.Z) * 1000);
-                int angleDirection =(int)( (skeleton.Joints[JointType.HandLeft].Position.Y - skeleton.Joints[JointType.HandRight].Position.Y)*1000);
-
-               
-
-                // On envoit la donnée sur le Serial
-                Console.WriteLine("M" + profondeurMain);
-                Console.WriteLine("D" + positionMainGauche.X);
-                Console.WriteLine("Angle direction : " + angleDirection);
-                //this.serialPort.WriteLine("M" + profondeurMain);
-                //this.serialPort.WriteLine("D" + positionMainGauche.X);
-            }
-            
-            
-            
 
             // Render Torso
             this.DrawBone(skeleton, drawingContext, JointType.Head, JointType.ShoulderCenter);
