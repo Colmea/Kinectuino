@@ -137,6 +137,10 @@ namespace WPF_Kinectuino.Resources
             Point position = this.SkeletonPointToScreen(joint.Position);
 
             Debug.WriteLine("SERIAL: " + joint.JointType + " is at " + position.X + ", " + position.Y);
+
+            if (!this.serialPort.IsOpen) this.serialPort.Open();
+
+            this.serialPort.WriteLine("KIN." + joint.JointType + "." + position.X + "." + position.Y);
         }
 
         public void setUpdateFrequency(int updateFrequency)
@@ -161,7 +165,7 @@ namespace WPF_Kinectuino.Resources
                 Debug.WriteLine("Error when init serial port");
             }
 
-            Debug.WriteLine("Serial Port " + port + " initialized");
+            Debug.WriteLine("Serial Port " + this.serialPort.PortName + " initialized");
             return (SerialPort)this.serialPort;
         }
 
