@@ -67,10 +67,66 @@ namespace WPF_Kinectuino.Resources
             // Only send data if updateFrequency is reached
             if ((timeStampNow - this.timeLastUpdateSerial) > this.updateFrequency)
             {
-                
                 // Head
                 if (this.isJointEnabled(JointType.Head))
                     this.sendJointToSerial(skeleton.Joints[JointType.Head]);
+                // Spine
+                if (this.isJointEnabled(JointType.Spine))
+                    this.sendJointToSerial(skeleton.Joints[JointType.Spine]);
+                // ShoulderCenter
+                if (this.isJointEnabled(JointType.ShoulderCenter))
+                    this.sendJointToSerial(skeleton.Joints[JointType.ShoulderCenter]);
+                // ShoulderLeft
+                if (this.isJointEnabled(JointType.ShoulderLeft))
+                    this.sendJointToSerial(skeleton.Joints[JointType.ShoulderLeft]);
+                // ShoulderRight
+                if (this.isJointEnabled(JointType.ShoulderRight))
+                    this.sendJointToSerial(skeleton.Joints[JointType.ShoulderRight]);
+                // ElbowRight
+                if (this.isJointEnabled(JointType.ElbowRight))
+                    this.sendJointToSerial(skeleton.Joints[JointType.ElbowRight]);
+                // ElbowLeft
+                if (this.isJointEnabled(JointType.ElbowLeft))
+                    this.sendJointToSerial(skeleton.Joints[JointType.ElbowLeft]);
+                // WristLeft
+                if (this.isJointEnabled(JointType.WristLeft))
+                    this.sendJointToSerial(skeleton.Joints[JointType.WristLeft]);
+                // WristRight
+                if (this.isJointEnabled(JointType.WristRight))
+                    this.sendJointToSerial(skeleton.Joints[JointType.WristRight]);
+                // HandLeft
+                if (this.isJointEnabled(JointType.HandLeft))
+                    this.sendJointToSerial(skeleton.Joints[JointType.HandLeft]);
+                // HandRight
+                if (this.isJointEnabled(JointType.HandRight))
+                    this.sendJointToSerial(skeleton.Joints[JointType.HandRight]);
+                // HipCenter
+                if (this.isJointEnabled(JointType.HipCenter))
+                    this.sendJointToSerial(skeleton.Joints[JointType.HipCenter]);
+                // HipLeft
+                if (this.isJointEnabled(JointType.HipLeft))
+                    this.sendJointToSerial(skeleton.Joints[JointType.HipLeft]);
+                // HipRight
+                if (this.isJointEnabled(JointType.HipRight))
+                    this.sendJointToSerial(skeleton.Joints[JointType.HipRight]);
+                // KneeLeft
+                if (this.isJointEnabled(JointType.KneeLeft))
+                    this.sendJointToSerial(skeleton.Joints[JointType.KneeLeft]);
+                // KneeRight
+                if (this.isJointEnabled(JointType.KneeRight))
+                    this.sendJointToSerial(skeleton.Joints[JointType.KneeRight]);
+                // AnkleLeft
+                if (this.isJointEnabled(JointType.AnkleLeft))
+                    this.sendJointToSerial(skeleton.Joints[JointType.AnkleLeft]);
+                // AnkleRight
+                if (this.isJointEnabled(JointType.AnkleRight))
+                    this.sendJointToSerial(skeleton.Joints[JointType.AnkleRight]);
+                // FootLeft
+                if (this.isJointEnabled(JointType.FootLeft))
+                    this.sendJointToSerial(skeleton.Joints[JointType.FootLeft]);
+                // FootRight
+                if (this.isJointEnabled(JointType.FootRight))
+                    this.sendJointToSerial(skeleton.Joints[JointType.FootRight]);
 
                 this.timeLastUpdateSerial = DateTime.Now.Ticks / 10000;
             }
